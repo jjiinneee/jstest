@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <!-- 전체비우기/ 카운트 /결제 (카카오페이)
+    이해관계자 선정 -> 시스템 사용하는 사용자 (관리자 생각하지마~), 페르소나=사람,기관,회사
+    용어사전(html), <div id="">
+    
+      알러지 가진 사람, 보호자  (각자가 봤을때 어떤 화면이 나올까?!)
+      분식/기리거리 음식 먹어도 되겠니?!  > 
+  -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .container {
+            display:flex
+        }
+        .productDiv {
+            width: 70vw;
+            height: 100vh;
+            background-color: coral;
+        }
+        .cartDiv {
+            width: 30vw;
+            background-color: gray;
+        }
+        .productUL {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .productUL li {
+            margin: 2em;
+        }
+
+        .productDiv img {
+            width: 200px;
+            box-shadow: 3px 3px 3px;
+        }
+    </style>
+
+    <div class="container">
+        <div class="productDiv">
+            <ul class="productUL">
+                <li>
+                    <div>
+                        <h4>상품1</h4>
+                        <img src="img/1.jpg">
+                        <h5>4000</h5>
+                        <button data-pname="상품1" data-price="4000" class="addBtn">ADD</button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>상품2</h4>
+                        <img src="img/2.jpg"> 
+                        <h5>5000</h5>
+                        <button data-pname="상품2" data-price="5000" class="addBtn">ADD</button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>상품3</h4>
+                        <img src="img/3.jpg">
+                        <h5>5000</h5>
+                        <button data-pname="상품3" data-price="5000" class="addBtn">ADD</button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>상품4</h4>
+                        <img src="img/5.jpg">
+                        <h5>6000</h5>
+                        <button data-pname="상품4" data-price="6000" class="addBtn">ADD</button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>상품5</h4>
+                        <img src="img/6.jpg">
+                        <h5>7000</h5>
+                        <button data-pname="상품5" data-price="7000" class="addBtn">ADD</button>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>상품6</h4>
+                        <img src="img/7.jpg">
+                        <h5>8000</h5>
+                        <button data-pname="상품6" data-price="8000" class="addBtn">ADD</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="cartDiv">
+            <ul class="cartUL">
+
+            </ul>
+            <hr/>
+            <h2 class="total"></h2>
+        </div>
+    </div>    
+<script src="js/cart.js"></script>
+<script>
+
+  const cartUL = document.querySelector(".cartUL");
+  document.querySelector(".productUL").addEventListener("click",(e) => {
+  
+    if(e.target.tagName !== 'BUTTON'){
+        return
+    }
+
+    const target = e.target
+    const pname = target.getAttribute("data-pname")
+    const price =  parseInt(target.getAttribute("data-price"))
+
+    const product = {pname,price}
+
+    //console.log(product)
+
+    const cartItems = addCart(product)
+  
+    printCart(cartItems);
+    makeSum(cartItems);
+
+ 
+  
+  },false);
+
+  document.querySelector(".cartUL").addEventListener("click", (e) => {
+    if(e.target.tagName !== "BUTTON"){
+      return;
+    }
+    const idx = e.target.getAttribute("data-idx");
+    console.log("idx" + idx);
+
+    const resutl = removeItem(idx);
+    printCart(resutl);
+    makeSum(resutl);
+
+  },false);
+    
+
+  function printCart(arr){
+    console.log(arr);
+    const strArr = arr.map(orderItem => `<li>${orderItem.pname} -- ${orderItem.price} -- ${orderItem.qty} <button data-idx=${orderItem.idx}>Remove</button></li>`);
+
+    console.log(strArr.join(" "));
+
+    cartUL.innerHTML = strArr.join(" ");
+
+  }
+
+  function makeSum(arr){
+    const initValue = {price : 0, qty:0};
+    // const sum = arr.reduce((prev,current) => {
+    //   return prev.price * prev.qty + (current.price * current.qty)
+    // } , initValue);
+
+    // console.log("sum : ", sum);
+    let sum = 0; 
+    arr.forEach(element => {
+      sum += item.price + item.qty;      
+    });
+  }
+  
+</script>
+</body>
+</html>

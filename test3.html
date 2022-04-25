@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="outer">
+        <h1>Outer</h1>
+        <a href='aaa' class="inner">
+            <h2>Inner</h2>
+        </a>
+    </div>
+    <script>
+
+        document.querySelector(".outer").addEventListener("click",function(event) {
+            console.log("outer....")
+           
+        },false)
+
+        document.querySelector(".inner").addEventListener("click",function() {
+            console.log("inner....")
+            event.stopPropagation()
+            event.preventDefault()
+            console.log(event.target)
+        },false)
+
+    </script>
+</body>
+</html>
