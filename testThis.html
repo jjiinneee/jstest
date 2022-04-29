@@ -1,0 +1,47 @@
+<script>
+  // var obj1 = {
+  //   name:'LEE',
+  //   sayName : function(){
+  //     console.log(this.name);
+  //   }
+  // }
+
+  // var obj2 = {
+  //   name :'Kim'
+  // }
+
+  // obj2.sayName = obj1.sayName;
+
+  // obj1.sayName();
+  // obj2.sayName();
+
+  // function Person(name){
+  //   this.name = name;
+  // }
+
+  // Person.prototype.getName = function(){
+  //   return this.name;
+  // }
+
+  // var me = new Person('Lee');
+  // console.log(me.getName());
+
+  // Person.prototype.name = 'Kim';
+  // console.log(Person.prototype.getName());
+
+  // function Person(name){
+  //   this.name = name;
+  // }
+  
+  // var me = new Person('Lee');
+  // console.log(me);
+
+  // var you =   Person('kim');  //undefined
+  // console.log(you);
+
+  function Person(name){
+    this.name = name;
+  }
+  var me = new Person('Lee');
+  console.log(me.name);
+</script>
